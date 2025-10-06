@@ -1,16 +1,97 @@
-# React + Vite
+# E-Ticaret Projesi - React & Redux
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bu proje, React ve Redux kullanılarak geliştirilmiş basit bir e-ticaret uygulamasıdır. Projenin temel amacı React, Redux ve modern web geliştirme teknolojilerini öğrenmektir.
 
-Currently, two official plugins are available:
+## 🚀 Özellikler
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Modern React**: React 19.1.1 ile geliştirilmiş
+- **State Management**: Redux Toolkit ile merkezi state yönetimi
+- **Routing**: React Router ile sayfa yönlendirmeleri
+- **API Entegrasyonu**: Fake Store API ile ürün verilerini çekme
+- **Responsive Tasarım**: Mobil uyumlu arayüz
+- **Ürün Listeleme**: Tüm ürünleri görüntüleme
+- **Ürün Detayı**: Seçilen ürünün detaylı bilgilerini görüntüleme
 
-## React Compiler
+## 🛠️ Teknolojiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React** (19.1.1) - UI kütüphanesi
+- **Redux Toolkit** (2.9.0) - State management
+- **React Redux** (9.2.0) - React-Redux bağlantısı
+- **React Router** (7.9.3) - Sayfa yönlendirmeleri
+- **Vite** - Build tool ve development server
+- **ESLint** - Code linting
 
-## Expanding the ESLint configuration
+## 📁 Proje Yapısı
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+├── components/
+│   └── Header.jsx          # Ana navigasyon bileşeni
+├── pages/
+│   ├── About/              # Hakkımızda sayfası
+│   ├── Contact/            # İletişim sayfası
+│   ├── Products/           # Ürünler listesi sayfası
+│   ├── productDetail/      # Ürün detay sayfası
+│   └── notFound/           # 404 sayfası
+├── store/
+│   ├── productSlice/       # Ürün state management
+│   └── store.js           # Redux store yapılandırması
+├── App.jsx                # Ana uygulama bileşeni
+├── main.jsx              # Uygulama giriş noktası
+└── index.css             # Global stiller
+```
+
+## 🔧 Kurulum
+
+1. Projeyi klonlayın veya indirin
+2. Bağımlılıkları yükleyin:
+```bash
+npm install
+```
+
+3. Geliştirme sunucusunu başlatın:
+```bash
+npm run dev
+```
+
+4. Tarayıcınızda `http://localhost:5173` adresine gidin
+
+## 📋 Mevcut Komutlar
+
+- `npm run dev` - Geliştirme sunucusunu başlatır
+- `npm run build` - Üretim için build alır
+- `npm run lint` - ESLint ile kod kontrolü yapar
+- `npm run preview` - Build alınmış projeyi önizler
+
+## 🌐 API Entegrasyonu
+
+Proje, [Fake Store API](https://fakestoreapi.com/) kullanarak ürün verilerini çeker:
+- **Tüm Ürünler**: `GET /products`
+- **Tek Ürün**: `GET /products/{id}`
+
+## 📱 Sayfalar
+
+1. **Ana Sayfa** (`/`) - Hoş geldin mesajı
+2. **Ürünler** (`/products`) - Tüm ürünlerin listelendiği sayfa
+3. **Ürün Detayı** (`/productdetail/:id`) - Seçilen ürünün detayları
+4. **Hakkımızda** (`/about`) - Şirket bilgileri
+5. **İletişim** (`/contact`) - İletişim formu
+6. **404 Sayfası** - Bulunamayan sayfalar için
+
+## 🎯 Öğrenme Hedefleri
+
+Bu proje ile şunları öğrenebilirsiniz:
+- React functional components ve hooks kullanımı
+- Redux Toolkit ile state management
+- React Router ile sayfa yönlendirmeleri
+- API entegrasyonu ve asenkron işlemler
+- Modern CSS ile responsive tasarım
+- Vite build tool kullanımı
+
+## 🔮 Gelecek Geliştirmeler
+
+- Sepet işlevselliği
+- Kullanıcı girişi ve kayıt
+- Ürün filtreleme ve arama
+- Ödeme sistemi entegrasyonu
+- TypeScript desteği
