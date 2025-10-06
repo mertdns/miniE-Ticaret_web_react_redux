@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header{
+    background-color: black;
+    color: white;
+}
+
+.header .menuContainer{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.header .menuContainer .logo a{
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.header .menuContainer .menu .menuItem{
+    display: inline-block;
+    color: white;
+    font-size: 21px;
+    text-decoration: none   ;
+    margin-left: 15px;
+    transition: .5s all;
+}
+
+.header .menuContainer .menu .menuItem:hover{
+    background-color: white;
+    color: black;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.wrapper .card{
+    width: 250px;
+    min-height: 300px;
+    border: 1px solid rgb(61, 177, 255);
+    padding: 10px 20px;
+}
+
+.wrapper .card .title{
+    font-size: 21px;
+    color: darkred;
+    font-weight: bold;
+}
+
+.wrapper .card .description{
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.wrapper .card .info{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.wrapper .card .info .price{
+    font-weight: bold;
+    font-size: 25px;
+    text-decoration: underline;
+}
+
+.wrapper .card .info .detailBtn{
+    background-color: rgb(61, 177, 255);
+    border: none;
+    outline: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: .5s all;
+}
+
+.wrapper .card .info .detailBtn:hover{
+    background-color: white;
+    color: rgb(61, 177, 255);
+    border: 1px solid rgb(61, 177, 255);
+}
