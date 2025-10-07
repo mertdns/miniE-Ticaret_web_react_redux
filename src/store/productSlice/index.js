@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  allProducts: [],
-  selectedProduct:[]
+    allProducts: [],
+    selectedProduct: [],
+    isLoading: false
 }
 
 export const GetAllProducts = createAsyncThunk("GetAllProducts", async () => {
@@ -11,26 +12,30 @@ export const GetAllProducts = createAsyncThunk("GetAllProducts", async () => {
     return data;
 });
 
-export const GetSelectedProduct = createAsyncThunk("GetSelectedProduct", async(id) => {
+export const GetSelectedProduct = createAsyncThunk("GetSelectedProduct", async (id) => {
     const response = await fetch("https://fakestoreapi.com/products/" + id);
-    const data = response.json()
+    const data = await response.json();
     return data;
 })
 
 export const productSlice = createSlice({
-    name : "productSlice",
+    name: "productSlice",
     initialState,
-    reducers:{
+    reducers: {
         clearSelectedProduct: (state) => {
             state.selectedProduct = [];
         }
     },
-    extraReducers:(builder) => {
-        builder.addCase(GetAllProducts.fulfilled, (state , action) => {
+    extraReducers: (builder) => {
+        builder.addCase(GetAllProducts.fulfilled, (state, action) => {
             state.allProducts = action.payload;
         })
-        builder.addCase(GetSelectedProduct.fulfilled, (state , action) => {
+        builder.addCase(GetSelectedProduct.fulfilled, (state, action) => {
             state.selectedProduct = action.payload;
+            state.isLoading = false;
+        })
+        builder.addCase(GetSelectedProduct.pending, (state) => {
+            state.isLoading = true;
         })
     }
 });
