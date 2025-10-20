@@ -2,17 +2,19 @@ import { data, useParams } from "react-router";
 import Header from "../../components/Header";
 import { useDispatch, useSelector } from "react-redux";
 
-import { useEffect, useState } from "react";
-import { GetSelectedProduct } from "../../store/productSlice";
+import { useEffect } from "react";
+import { decrementBasketProductCount, GetSelectedProduct, incrementBasketProductCount , addToBasket } from "../../store/productSlice";
 import { Backdrop, CircularProgress } from "@mui/material";
 
 function ProductDetail() {
     let data = undefined;
     let isLoading = false;
+    let basketProductCount;
+    const dispatch = useDispatch();
 
     const { id } = useParams();
     if (id) {
-        const dispatch = useDispatch();
+        basketProductCount = useSelector(state => state.products.ProductCount);
 
         useEffect(() => {
             dispatch(GetSelectedProduct(id))
@@ -47,7 +49,12 @@ function ProductDetail() {
                                     <div>{data.description}</div>
                                     <div style={{ display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
                                         <h2>{data.price}</h2>
-                                        <button style={{ backgroundColor: "lightgreen", color: "white", padding: "5px 10px", border: "none" }}>Sepete Ekle</button>
+                                        <button onClick={() => dispatch(addToBasket({...data , count: basketProductCount }))} style={{ backgroundColor: "darkred", color: "white", cursor: "pointer" , padding: "5px 10px", border: "none" }}>Sepete Ekle</button>
+                                    </div>
+                                    <div className="basketBtnContainer">
+                                        <button onClick={() => dispatch(decrementBasketProductCount())} type="button">-</button>
+                                        <span>{basketProductCount}</span>
+                                        <button onClick={() => dispatch(incrementBasketProductCount())} type="button">+</button>
                                     </div>
                                 </div>
                             </div>

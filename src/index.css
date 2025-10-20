@@ -31,6 +31,11 @@
     display: inline-block;
 }
 
+.header .menuContainer .menu {
+    display: flex;
+    align-items: center;
+}
+
 .header .menuContainer .menu .menuItem{
     display: inline-block;
     color: white;
@@ -43,6 +48,11 @@
 .header .menuContainer .menu .menuItem:hover{
     background-color: white;
     color: black;
+}
+
+.header .menuContainer .menu .menuItem:last-child{
+    display: flex;
+    align-items: center;
 }
 
 .wrapper{
@@ -96,4 +106,48 @@
     background-color: white;
     color: rgb(61, 177, 255);
     border: 1px solid rgb(61, 177, 255);
+}
+
+.product .basketBtnContainer{
+    margin-top: 10px;
+}
+
+.product .basketBtnContainer button{
+    background-color: lightgreen;
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 25px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.product .basketBtnContainer span{
+    margin: 0 5px;
+    font-size: 24px;
+    display: inline-block;
+}
+
+.basketProductContent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12.5px 0;
+}
+
+.basketProductContent img{
+    max-width: 150px;
+    max-height: 100px;
+    margin-right: 10px;
+}
+
+.basketProductContent button{
+    color: darkred;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 23px;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
