@@ -6,7 +6,8 @@ const initialState = {
     isLoading: false,
     ProductCount: 0,
     basketProductsCount: 0,
-    basket: []
+    basket: [],
+    totalPrice: 0
 }
 
 export const GetAllProducts = createAsyncThunk("GetAllProducts", async () => {
@@ -28,6 +29,9 @@ export const productSlice = createSlice({
         clearSelectedProduct: (state) => {
             state.selectedProduct = [];
         },
+        clearProductCount: (state) => {
+            state.ProductCount = 0;
+        },
         incrementBasketProductCount: (state) => {
             state.ProductCount += 1;
         },
@@ -37,7 +41,7 @@ export const productSlice = createSlice({
             }
         },
         addToBasket: (state, action) => {
-            const product = state.basket.find(p => p.id === action.payload.id);//state ten referans alır burası değişirse state deki değerde değişir.
+            const product = state.basket.find(p => p.id === action.payload.id);//state'den referans alır burası değişirse state'deki değerde değişir.
             if (action.payload.count > 0) {
                 if (product) {
                     product.count += action.payload.count;
@@ -47,6 +51,26 @@ export const productSlice = createSlice({
                 }
             }
         },
+        removeToBasketById: (state, action) => {
+            const product = state.basket.findIndex(p => p.id === action.payload);
+            if (product != -1) {
+                if (state.basket[product].count > 1) {
+                    state.basket[product].count -= 1;
+                }
+                else if(state.basket[product].count == 1){
+                    state.basket.splice(product, 1);
+                }
+            }
+        },
+        getTotalPrice: (state) => {
+            state.totalPrice = 0;
+            state.basket.forEach(product => {
+                state.totalPrice += product.price;
+                if (product.count > 0) {
+                    state.totalPrice = (product.count * state.totalPrice);
+                }
+            });
+        },
         getAllProductsCount: (state) => {
             let total = 0;
             state.basketProductsCount = 0;
@@ -54,7 +78,6 @@ export const productSlice = createSlice({
                 total += product.count;
             })
             state.basketProductsCount = total;
-            
         }
     },
     extraReducers: (builder) => {
@@ -75,6 +98,6 @@ export const productSlice = createSlice({
     }
 });
 
-export const { clearSelectedProduct, incrementBasketProductCount, getAllProductsCount, addToBasket, decrementBasketProductCount } = productSlice.actions
+export const { clearSelectedProduct, clearProductCount, incrementBasketProductCount, removeToBasketById, getAllProductsCount, getTotalPrice, addToBasket, decrementBasketProductCount } = productSlice.actions
 
 export default productSlice.reducer

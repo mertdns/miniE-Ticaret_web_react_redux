@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useEffect } from "react";
-import { decrementBasketProductCount, GetSelectedProduct, incrementBasketProductCount , addToBasket } from "../../store/productSlice";
+import { decrementBasketProductCount, GetSelectedProduct, incrementBasketProductCount, addToBasket, clearProductCount } from "../../store/productSlice";
 import { Backdrop, CircularProgress } from "@mui/material";
 
 function ProductDetail() {
@@ -11,6 +11,11 @@ function ProductDetail() {
     let isLoading = false;
     let basketProductCount;
     const dispatch = useDispatch();
+
+    const AddtoBasketClckBtn = () => {
+        dispatch(addToBasket({ ...data, count: basketProductCount }));
+        dispatch(clearProductCount());
+    }
 
     const { id } = useParams();
     if (id) {
@@ -49,7 +54,7 @@ function ProductDetail() {
                                     <div>{data.description}</div>
                                     <div style={{ display: "flex", justifyContent: "space-between", marginTop: "20px" }}>
                                         <h2>{data.price}</h2>
-                                        <button onClick={() => dispatch(addToBasket({...data , count: basketProductCount }))} style={{ backgroundColor: "darkred", color: "white", cursor: "pointer" , padding: "5px 10px", border: "none" }}>Sepete Ekle</button>
+                                        <button onClick={AddtoBasketClckBtn} style={{ backgroundColor: "darkred", color: "white", cursor: "pointer", padding: "5px 10px", border: "none" }}>Sepete Ekle</button>
                                     </div>
                                     <div className="basketBtnContainer">
                                         <button onClick={() => dispatch(decrementBasketProductCount())} type="button">-</button>
